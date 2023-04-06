@@ -18,51 +18,17 @@
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="6QA-wH-6Al" kind="relationship" relationship="viewControllers" id="CjK-cI-6ZZ"/>
-                        <segue destination="P1b-b4-cey" kind="relationship" relationship="viewControllers" id="iZP-Wb-nm7"/>
-                        <segue destination="p1p-ga-yTK" kind="relationship" relationship="viewControllers" id="hlC-bM-JWP"/>
-                        <segue destination="o7f-c9-Sz4" kind="relationship" relationship="viewControllers" id="WE1-xg-q7u"/>
+                        <segue destination="Ty6-8h-GHA" kind="relationship" relationship="viewControllers" id="QrD-Jd-y7J"/>
+                        <segue destination="vZv-wA-zXw" kind="relationship" relationship="viewControllers" id="ZBc-bA-lOh"/>
+                        <segue destination="iIQ-py-PDn" kind="relationship" relationship="viewControllers" id="ZAi-fg-Pkk"/>
+                        <segue destination="Eyu-sI-mE1" kind="relationship" relationship="viewControllers" id="LVA-gj-VaC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hrB-P1-2NR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1251" y="-120"/>
-        </scene>
-        <!--Add Contacts-->
-        <scene sceneID="eZx-rD-Cws">
-            <objects>
-                <navigationController id="P1b-b4-cey" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add Contacts" id="q9Y-6M-f1X"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ds7-wV-UuW">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="vZv-wA-zXw" kind="relationship" relationship="rootViewController" id="sWs-2r-IXl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VmE-yA-xat" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1602" y="613"/>
+            <point key="canvasLocation" x="-1257" y="-23"/>
         </scene>
         <!--Home-->
-        <scene sceneID="UK1-NF-WEV">
-            <objects>
-                <navigationController id="6QA-wH-6Al" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="DCO-On-Isp"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fto-g1-ygH">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Ty6-8h-GHA" kind="relationship" relationship="rootViewController" id="KFg-lq-C63"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2U3-n5-D7l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2305" y="606"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="lZO-6n-I9g">
             <objects>
                 <viewController id="Ty6-8h-GHA" customClass="ViewController" customModule="MACos_project" customModuleProvider="target" sceneMemberID="viewController">
@@ -86,13 +52,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" systemColor="systemGray6Color"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="E9k-oY-kyG"/>
                     <navigationItem key="navigationItem" id="I8W-nu-1d8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNo-ZG-vOs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2306.1068702290077" y="1326.7605633802818"/>
+            <point key="canvasLocation" x="-2273" y="754"/>
         </scene>
-        <!--Add View Controller-->
+        <!--Add-->
         <scene sceneID="Bcd-ye-i4P">
             <objects>
                 <viewController id="vZv-wA-zXw" customClass="AddViewController" customModule="MACos_project" customModuleProvider="target" sceneMemberID="viewController">
@@ -185,6 +152,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Submit"/>
+                                <connections>
+                                    <action selector="submit_action:" destination="vZv-wA-zXw" eventType="touchUpInside" id="9XQ-Uu-hkp"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2k-qe-xI9">
                                 <rect key="frame" x="113" y="88" width="166" height="30"/>
@@ -197,6 +167,7 @@
                         <viewLayoutGuide key="safeArea" id="7oG-22-ICM"/>
                         <color key="backgroundColor" red="0.0" green="0.1873723187732951" blue="0.36082474226804129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Add" image="plus" catalog="system" id="oQc-No-YNQ"/>
                     <navigationItem key="navigationItem" id="oZq-SP-jt4"/>
                     <connections>
                         <outlet property="AddressTextField" destination="mAW-X9-bi7" id="IWg-V5-Ipd"/>
@@ -210,9 +181,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIG-ss-nX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1602.2900763358778" y="1326.7605633802818"/>
+            <point key="canvasLocation" x="-1593" y="754"/>
         </scene>
-        <!--Contact View Controller-->
+        <!--Contacts-->
         <scene sceneID="zeM-CR-II1">
             <objects>
                 <viewController id="iIQ-py-PDn" customClass="ContactViewController" customModule="MACos_project" customModuleProvider="target" sceneMemberID="viewController">
@@ -232,13 +203,14 @@
                         <color key="backgroundColor" red="0.001296676006259681" green="0.1578886131333915" blue="0.33505154637010304" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="0.0" green="0.29501228419999997" blue="0.43298969069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="tablecells" catalog="system" id="7y1-UZ-ngq"/>
                     <navigationItem key="navigationItem" id="s9N-m9-Znv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py7-ny-h10" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-927" y="1327"/>
+            <point key="canvasLocation" x="-921" y="754"/>
         </scene>
-        <!--Credits View Controller-->
+        <!--Credits-->
         <scene sceneID="8lO-4M-J45">
             <objects>
                 <viewController id="Eyu-sI-mE1" customClass="CreditsViewController" customModule="MACos_project" customModuleProvider="target" sceneMemberID="viewController">
@@ -278,6 +250,7 @@
                         <viewLayoutGuide key="safeArea" id="Vdk-ip-V23"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Credits" image="rectangle.and.pencil.and.ellipsis" catalog="system" id="XUb-pJ-Oxo"/>
                     <navigationItem key="navigationItem" id="Bbc-Rz-HWx"/>
                     <connections>
                         <outlet property="DateLbl" destination="Zc0-sF-vmp" id="wzN-nd-pA9"/>
@@ -285,45 +258,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFM-vh-MJg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-240.45801526717557" y="1336.6197183098593"/>
-        </scene>
-        <!--Contacts-->
-        <scene sceneID="DgT-Us-Meu">
-            <objects>
-                <navigationController id="p1p-ga-yTK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" id="JTR-jj-Mr2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Yd-NS-Tdh">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="iIQ-py-PDn" kind="relationship" relationship="rootViewController" id="76d-l0-fhh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hxu-yf-bSv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-926" y="618"/>
-        </scene>
-        <!--Credits-->
-        <scene sceneID="xPH-MN-BUJ">
-            <objects>
-                <navigationController id="o7f-c9-Sz4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Credits" id="PYV-Oa-R3j"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="VFZ-oV-7LC">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Eyu-sI-mE1" kind="relationship" relationship="rootViewController" id="JNS-ld-riV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TNH-sy-wUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-240" y="613"/>
+            <point key="canvasLocation" x="-274" y="754"/>
         </scene>
     </scenes>
     <resources>
+        <image name="homekit" catalog="system" width="128" height="104"/>
         <image name="nscc_logo.png" width="2560" height="575"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="80"/>
+        <image name="tablecells" catalog="system" width="128" height="93"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
