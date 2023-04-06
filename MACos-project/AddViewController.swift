@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SQLite3
 class AddViewController: UIViewController {
 
     
@@ -24,11 +24,25 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var SubmitBtn: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    var db = DBmanager()
     
+    override func viewDidLoad() {
+        super.viewDidLoad();
+            
         
+    }
+    
+
+    @IBAction func submit_action(_ sender: UIButton) {
+        if let firstname = FirstTextField.text,
+           let lastname = LastTextField.text,
+           let email = EmailTextField.text,
+           let address = AddressTextField.text,
+           let phone = PhoneTextField.text,
+           let notes = NoteTextView.text {
+            //add data validators later. only for testing purposes
+               db.insertdata(firstname: firstname, lastname: lastname, email: email, address: address, phone: phone, notes: notes)
+        }
     }
     
 
