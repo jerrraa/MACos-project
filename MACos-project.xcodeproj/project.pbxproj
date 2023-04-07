@@ -61,6 +61,7 @@
 		734B703E29DDFCBA001A1FA3 /* nscc_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nscc_logo.png; path = ../../../Downloads/nscc_logo.png; sourceTree = "<group>"; };
 		734B704029DE056B001A1FA3 /* DBmanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBmanager.swift; sourceTree = "<group>"; };
 		734B704729DE200D001A1FA3 /* mac-contact.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = "mac-contact.sqlite"; path = "../../mac-contact.sqlite"; sourceTree = "<group>"; };
+		738B0F1A29E0B95C0022FF9F /* contactsdb.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = contactsdb.db; sourceTree = "<group>"; };
 		73B04E9229DF29F600ED685F /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +122,7 @@
 				734B703829DDFAAD001A1FA3 /* AddViewController.swift */,
 				734B704029DE056B001A1FA3 /* DBmanager.swift */,
 				734B703A29DDFABD001A1FA3 /* CreditsViewController.swift */,
+				738B0F1A29E0B95C0022FF9F /* contactsdb.db */,
 				734B704729DE200D001A1FA3 /* mac-contact.sqlite */,
 				734B700F29DDF62D001A1FA3 /* Assets.xcassets */,
 				734B701129DDF62D001A1FA3 /* LaunchScreen.storyboard */,
