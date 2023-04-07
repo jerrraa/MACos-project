@@ -24,14 +24,11 @@ class AddViewController: UIViewController {
     
     @IBOutlet weak var SubmitBtn: UIButton!
     
-    var db = DBmanager()
+    var dbfile = DBmanager()
     
     override func viewDidLoad() {
         super.viewDidLoad();
-            
-        
     }
-    
 
     @IBAction func submit_action(_ sender: UIButton) {
         if let firstname = FirstTextField.text,
@@ -40,9 +37,39 @@ class AddViewController: UIViewController {
            let address = AddressTextField.text,
            let phone = PhoneTextField.text,
            let notes = NoteTextView.text {
-            //add data validators later. only for testing purposes
-               db.insertdata(firstname: firstname, lastname: lastname, email: email, address: address, phone: phone, notes: notes)
+            
+            //we'll validate the email and phone and if it's not true, it won't insert the data. i found it easier if i use ors.
+            if (!validateEmail(email) || !validatephone(phone)) {
+                print("invalid email or phone number.")
+                return
+            } else {
+                //by our lets, we get to use those variables to insert our data.
+                dbfile.insertdata(firstname: firstname, lastname: lastname, email: email, address: address, phone: phone, notes: notes)
+                clearfields()
+            }
         }
+    }
+    //validates the email inside of the textifled and it'll return false if it's incorrect
+    private func validateEmail(_ email: String) -> Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return emailPredicate.evaluate(with: email)
+    }
+
+    //validates the phone and it'll check if they're numbers or < 10. returns falses if it's not correct
+    private func validatephone(_ phonenumber: String) -> Bool {
+        let regex = "^\\d{10}$"
+        let phoneNumberPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return phoneNumberPredicate.evaluate(with: phonenumber)
+    }
+    //instead of writing all of this code in the submit_action function i used this instead. clears all textfields.
+    private func clearfields() {
+        FirstTextField.text = ""
+        LastTextField.text = ""
+        EmailTextField.text = ""
+        AddressTextField.text = ""
+        PhoneTextField.text = ""
+        NoteTextView.text = ""
     }
     
 
