@@ -62,9 +62,83 @@ class DBmanager {
             print("db doesn't exist or error occured.")
         }
     }
-
-    func readData() {
-        // add later
+//copy pasted from insert data as they do the same thign except diff statements.
+    func deletedata(id: Int) {
+        var deletepointer: OpaquePointer?
+        
+        let deletestatement = "DELETE FROM contacts FROM id = ?;"
+        //now we have our delete statement and pointer, we'll use a if statement to make sure they're valid.
+        if sqlite3_prepare_v2(dbpointer, deletestatement, -1, &deletepointer, nil) == SQLITE_OK {
+            //we'll use the id to delete our row.
+            sqlite3_bind_int(deletepointer, 1, Int32(id))
+            
+            if sqlite3_step(deletepointer) == SQLITE_OK {
+                print("\(id) has been deleted.")
+            } else {
+                print ("error deleting the data")
+            }
+            sqlite3_finalize(deletepointer)
+            
+        } else {
+            print("db doesn't exist or error occured.")
+        }
+        
     }
+    
+    //reads the data from my contacts table and it'll return a class that'll be stored into a array to display data.
+    func readdata() -> [Contacts] {
+        var contacts = [Contacts]()
+        //as before we get our statement and pointer.
+        let readContactStatement = "SELECT * FROM contacts"
+        var readpointer: OpaquePointer?
+        
+        if sqlite3_prepare_v2(dbpointer, readContactStatement, -1, &readpointer, nil) == SQLITE_OK {
+            while sqlite3_step(readpointer) == SQLITE_ROW {
+                //it goes through each row and grabs the data from those rows and turns them into variables that'll be used near end of ht loop.
+                let id = sqlite3_column_int(readpointer, 0)
+                let firstname = String(cString: sqlite3_column_text(readpointer, 1))
+                let lastname = String(cString: sqlite3_column_text(readpointer, 2))
+                let email = String(cString: sqlite3_column_text(readpointer, 3))
+                let address = String(cString: sqlite3_column_text(readpointer, 4))
+                let phone = String(cString: sqlite3_column_text(readpointer, 5))
+                let notes = String(cString: sqlite3_column_text(readpointer, 6))
+                //as i have a contacts class, i'll be using the constructor to store my data.
+                let contact = Contacts(id: Int(id), first: firstname, last: lastname, email: email, address: address, phone: phone, notes: notes)
+                contacts.append(contact)
+            }
+            
+            sqlite3_finalize(readpointer)
+        }
+        //returns all of the contacts that's in the db.
+        return contacts
+    }
+
+    func savenotes(notes: String) {
+        //update this func when i get to clientdetails page.
+    
+    }
+    
+    func editcontacts(id: Int, firstname: String, lastname: String, email: String, address: String, phone: String, notes: String) {
+        //add code when finished view contacts page.
+    }
+    
+    func compareEmails(email: String) -> Bool {
+        //selects all of the email data present in the table
+        let comparestatement = "SELECT * FROM contacts WHERE email = ?;"
+        var comparepointer: OpaquePointer?
+        
+        if sqlite3_prepare_v2(dbpointer, comparestatement, -1, &comparepointer, nil) == SQLITE_OK {
+            sqlite3_bind_text(comparepointer, 1, (email as NSString).utf8String, -1, nil)
+            //now our pointer stored our email, we'll go through all rows to see if they match.
+            if sqlite3_step(comparepointer) == SQLITE_ROW {
+                //return true if found.
+                return true;
+            }
+        }
+        //deacllocate our pointer and return false as nothing was cmopared.
+        sqlite3_finalize(comparepointer)
+        return false;
+    }
+    
 }
 
