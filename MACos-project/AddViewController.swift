@@ -43,10 +43,17 @@ class AddViewController: UIViewController {
                 print("invalid email or phone number.")
                 return
             } else {
+                if (dbfile.compareEmails(email: email) == true) {
+                    //if it does exist, it'll return a false if not return true and it'll continue.
+                    print("there's a existing email in the database!")
+                    return
+                } else {
+                
                 //by our lets, we get to use those variables to insert our data.
                 dbfile.insertdata(firstname: firstname, lastname: lastname, email: email, address: address, phone: phone, notes: notes)
                 clearfields()
             }
+           }
         }
     }
     //validates the email inside of the textifled and it'll return false if it's incorrect
@@ -70,6 +77,10 @@ class AddViewController: UIViewController {
         AddressTextField.text = ""
         PhoneTextField.text = ""
         NoteTextView.text = ""
+    }
+    
+    private func checkforblank() -> Bool {
+       return false
     }
     
 
