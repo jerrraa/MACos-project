@@ -20,8 +20,7 @@ class DBmanager {
 
     func opendatabase(){
         let fileURL = try! FileManager.default
-            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(dbName)
+            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)            .appendingPathComponent(dbName)
         //opens the database
         if sqlite3_open(fileURL.path, &dbpointer) != SQLITE_OK {
             print("error opening database.")
@@ -66,7 +65,7 @@ class DBmanager {
     func deletedata(id: Int) {
         var deletepointer: OpaquePointer?
         
-        let deletestatement = "DELETE FROM contacts FROM id = ?;"
+        let deletestatement = "DELETE FROM contacts WHERE id = ?;"
         //now we have our delete statement and pointer, we'll use a if statement to make sure they're valid.
         if sqlite3_prepare_v2(dbpointer, deletestatement, -1, &deletepointer, nil) == SQLITE_OK {
             //we'll use the id to delete our row.
@@ -113,10 +112,14 @@ class DBmanager {
         return contacts
     }
 
-    func savenotes(notes: String) {
-        //update this func when i get to clientdetails page.
-    
+    func savenotes(id: Int, notes: String) {
+        var savepointer: OpaquePointer?
+        
+        print("\(id)")
+        let savestatement = ""
+        print("\(notes)")
     }
+
     
     func editcontacts(id: Int, firstname: String, lastname: String, email: String, address: String, phone: String, notes: String) {
         //add code when finished view contacts page.

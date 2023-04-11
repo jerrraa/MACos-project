@@ -25,22 +25,21 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
     contacts = dbfile.readdata()
     tableview.reloadData()
   }
-  //https://stackoverflow.com/questions/65428289/how-to-tap-on-tableview-cell-and-navigate-to-another-tableview-in-the-next-viewc
-  //here's what i used to implement this function.
-    
+    //this fixed my issue on displaying data if it's edited, delete or adding
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        contacts = dbfile.readdata()
+        tableview.reloadData()
+    }
+
+//i've watched lesson 9 part 2, so i reworked this function so i don't need a resource i linked before.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //when user taps on a row, store it into contacts[] and insert it into a vari.
         let selectedcontact = contacts[indexPath.row]
         print("\(selectedcontact.id)")
-        //we reference our storyboard in order to present client details page.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let detailVC = storyboard.instantiateViewController(withIdentifier: "ClientDetailsView") as! ClientDetailsViewController
-        
-        //detailvc = clientdetailscontrolerview so we store our contacts into a another contacts or constructor.
-        detailVC.contact = selectedcontact
-        //display the page w/ all of the data
-        present(detailVC, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "sequeClientDetails", sender: selectedcontact)
+       
   }
     
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,5 +66,19 @@ class ContactViewController: UIViewController, UITableViewDelegate, UITableViewD
       
     return cell
   }
-  
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sequeClientDetails",
+            let destinationVC = segue.destination as? ClientDetailsViewController,
+            let selectedcontact = sender as? Contacts {
+                destinationVC.selectedID = selectedcontact.id
+                destinationVC.selectedFirstName = selectedcontact.firstname
+                destinationVC.selectedLastName = selectedcontact.lastname
+                destinationVC.selectedEmail = selectedcontact.email
+                destinationVC.selectedAddress = selectedcontact.address
+                destinationVC.selectedPhone = selectedcontact.phone
+                destinationVC.selectedNotes = selectedcontact.notes
+            }
+        }
+
 }
