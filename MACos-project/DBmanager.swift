@@ -115,14 +115,49 @@ class DBmanager {
     func savenotes(id: Int, notes: String) {
         var savepointer: OpaquePointer?
         
-        print("\(id)")
-        let savestatement = ""
-        print("\(notes)")
+        let savestatement = "UPDATE contacts SET notes = ? WHERE id = ?"
+
+        if sqlite3_prepare_v2(dbpointer, savestatement, -1, &savepointer, nil) == SQLITE_OK {
+            
+            sqlite3_bind_text(savepointer, 1, (notes as NSString).utf8String, -1, nil)
+            sqlite3_bind_int(savepointer, 2, Int32(id))
+            
+            if sqlite3_step(savepointer) == SQLITE_DONE {
+                print("edit was changed.")
+            } else {
+                print("error inserting data.")
+            }
+
+            sqlite3_finalize(savepointer)
+        } else {
+            print("db doesn't exist or error occured.")
+        }
     }
 
     
     func editcontacts(id: Int, firstname: String, lastname: String, email: String, address: String, phone: String, notes: String) {
-        //add code when finished view contacts page.
+        var editpointer: OpaquePointer?
+        
+        let editstatement = "UPDATE contacts SET firstname = ?, lastname = ?, email = ?, address = ?, phone = ?, notes = ? WHERE id = ?"
+        
+        if sqlite3_prepare_v2(dbpointer, editstatement, -1, &editpointer, nil) == SQLITE_OK {
+            sqlite3_bind_text(editpointer, 1, (firstname as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(editpointer, 2, (lastname as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(editpointer, 3, (email as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(editpointer, 4, (address as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(editpointer, 5, (phone as NSString).utf8String, -1, nil)
+            sqlite3_bind_text(editpointer, 6, (notes as NSString).utf8String, -1, nil)
+            sqlite3_bind_int(editpointer, 7, Int32(id))
+            
+            if sqlite3_step(editpointer) == SQLITE_DONE {
+                print("data was changed!")
+            } else {
+                print("error inserting data.")
+            }
+
+            sqlite3_finalize(editpointer)
+        
+        }
     }
     
     func compareEmails(email: String) -> Bool {

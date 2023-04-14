@@ -58,11 +58,11 @@ class EditInfoViewController: UIViewController {
     var editPhone: String?
     
     var editNotes: String?
-    
+    var dbfile = DBmanager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         IDlbl.text = "ID: \(String(editID ?? 0))"
         FirstTxtField.text = editFirst
         LastTextField.text = editLast
@@ -76,5 +76,31 @@ class EditInfoViewController: UIViewController {
     
     @IBAction func closepage_action(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func savedata_action(_ sender: Any) {
+        
+        if let firstname = FirstTxtField.text,
+           let lastname = LastTextField.text,
+           let email = EmaiTextfield.text,
+           let address = AddressTextField.text,
+           let phone = PhoneTextField.text,
+           let notes = NoteTextView.text {
+            
+            dbfile.editcontacts(id: Int(editID ?? 0), firstname: firstname, lastname: lastname, email: email, address: address, phone: phone, notes: notes)
+            let editcontact = Contacts(id: editID ?? 0, first: firstname, last: lastname, email: email, address: address, phone: phone, notes: notes)
+            performSegue(withIdentifier: "segueSend", sender: editcontact)
+            
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueSend",
+           let destinationVC = segue.destination as? ClientDetailsViewController,
+           let selectedContact = sender as? Contacts {
+            destinationVC.selectedFirstName = selectedContact.firstname
+        }
     }
 }
