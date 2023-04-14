@@ -423,7 +423,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Save"/>
                                 <connections>
-                                    <segue destination="rad-tC-ZTO" kind="show" identifier="sequeSend" id="dcs-lW-CtN"/>
+                                    <action selector="savedata_action:" destination="kP8-KQ-vjC" eventType="touchUpInside" id="zft-hj-RTw"/>
+                                    <segue destination="rad-tC-ZTO" kind="show" identifier="segueSend" id="dcs-lW-CtN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aCs-hb-T3S">
